@@ -1,9 +1,0 @@
-#Configuration for the plugin
-####################################Database
-Database:
-  Host: jdbc:mysql://localhost:3306/example
-  User: Bob
-  Pass: Cake
-#####################################Messages
-Messages:
-  MessagePrefix: 

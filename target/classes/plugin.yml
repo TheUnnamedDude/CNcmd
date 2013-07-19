@@ -1,0 +1,8 @@
+author: Lukeer31
+database: false
+generator: http://dinnerbone.com/minecraft/tools/pluginator/
+main: eu.creationation.lukeer31.CNcmd
+name: CNcmd
+startup: postworld
+url: http://www.CreatioNation.eu/
+version: '1.0'
