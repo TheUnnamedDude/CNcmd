@@ -3,6 +3,7 @@ package eu.creationation.lukeer31;
 import java.beans.Statement;
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import org.bukkit.configuration.file.FileConfiguration;
@@ -23,6 +24,7 @@ public class Config {
 	//Database
 	public static Connection db;
 	public static java.sql.Statement st;
+	public static ResultSet rs;
 		
 	
 	public static void load(CNcmd master){

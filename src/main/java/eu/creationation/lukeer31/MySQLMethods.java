@@ -77,8 +77,29 @@ public class MySQLMethods  {
 				//Thats it, all the tables are made!!!	
 		}catch(SQLException ex){
 			//Uh oh, somethings gone wrong
-			
+			ex.printStackTrace();			
 		}		
+		
+	}
+	
+	public static void closeDatabase(){
+    	//Close the database connection
+        try {
+        	//Close the result set
+        	if(Config.rs != null){
+        		Config.rs.close();
+        	}
+        	//Close the statement
+        	if(Config.st != null){
+        		Config.st.close();
+        	}
+        	//Close the db connection
+        	if(Config.db != null){
+        		Config.db.close();
+        	}
+		} catch (SQLException ex) {			
+			ex.printStackTrace();
+		}	
 		
 	}
 
