@@ -7,49 +7,15 @@ import com.mysql.jdbc.Connection;
 import com.mysql.jdbc.Statement;
 
 //Runs in a separate thread to prevent any server lag down to 
-public class MySQLOperations implements Runnable {
-	
-	public Connection mysql;
+@SuppressWarnings("unused")
+public class MySQLOperations {
 
-	@Override
-	public void run() {
-		// TODO Auto-generated method stub
-		
-	}
 	
-	MySQLOperations(String host, String database, String user, String pass){
-
-		
-
-		
-		
-	}
-	
-	public boolean databaseConnect(String host, String database, String user, String pass){
-		//This class either returns true or false, true to say the database has connected correctly, false to say it has
-		//not, in which case the plugin gets disabled
-		//Try and connect to the database			
-
-		try{
-			this.mysql =  (Connection) DriverManager.getConnection(host, user, pass);		
-		}catch(SQLException ex){
-			//There was a problem connecting, return false
-			return false;
-		}
-		//The database has connected with no problems, job done
-		return true;
-	}
-	
-	public boolean generateTables(){
-		
-		try{
-		//Create the statements
-		Statement st = (Statement) this.mysql.createStatement();
-		//Create the tables if they don't already exist
-		//Users table
-		st.execute("CREATE TABLE IF NOT EXISTS " +
-				"`cn_players` ( " +
-				"`player_id` int(11) NOT NULL AUTO_INCREMENT, " +
+	//Gona rebuild this entire class, keeping this here because i really cannoy be bothered to have to re-write all this SQL syntax
+ 
+/*	st.execute("CREATE TABLE IF NOT EXISTS " +
+			"`cn_players` ( " +
+			"`player_id` int(11) NOT NULL AUTO_INCREMENT, " +
 				"`player_username` int(11) NOT NULL,  " +
 				"`player_playtime` int(11) NOT NULL,  " +
 				"PRIMARY KEY (`player_id`)) " +
@@ -114,15 +80,7 @@ public class MySQLOperations implements Runnable {
 				"PRIMARY KEY (`warp_id`)) " +
 				"ENGINE=InnoDB DEFAULT CHARSET=latin1;");
 		//Thats it, all the tables are made!!!
-		
-		}catch(SQLException ex){
-			//There was a problem during the creation, return false
-			return false;
-		}		
-		
-		return true;
-	}
-	
-	
+*/		
+
 	
 }
