@@ -1,7 +1,13 @@
 package eu.creationation.lukeer31;
 
+import java.beans.Statement;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
+
 import org.bukkit.configuration.file.FileConfiguration;
 
+@SuppressWarnings("unused")
 public class Config {
 	
 	//The main plugin
@@ -13,7 +19,11 @@ public class Config {
 	public static String user;
 	
 	public static String messagePrefix;
-	//public static String 
+	
+	//Database
+	public static Connection db;
+	public static java.sql.Statement st;
+		
 	
 	public static void load(CNcmd master){
 		plugin = master;
@@ -29,6 +39,17 @@ public class Config {
 		messagePrefix = cfg.getString("Messages.MessagePrefix");
 		//More too add as i need them
 		
+		//Connect to the database
+		try{
+			//Assign it to the public properties so the MySQL classes can get them
+			db = DriverManager.getConnection(host, user, pass);
+			st = db.createStatement();			
+		}catch(SQLException ex){
+			//Database connection failed :(
+			plugin.getLogger().log(null, "Database connection failed. Disabling plugin");
+			//Disable the plugin to prevent problemos
+			plugin.getServer().getPluginManager().disablePlugin(master);						
+		}		
 		//Config loaded. Job done
 	}
 
