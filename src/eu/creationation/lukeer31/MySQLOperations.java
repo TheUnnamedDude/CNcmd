@@ -6,8 +6,11 @@ import java.sql.SQLException;
 import com.mysql.jdbc.Connection;
 import com.mysql.jdbc.Statement;
 
-//Runs in a separate thread to prevent any server lag down to 
+
 @SuppressWarnings("unused")
+
+//Run this in a bukkit task
+
 public class MySQLOperations {
 
 	
