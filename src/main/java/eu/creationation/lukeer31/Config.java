@@ -5,6 +5,7 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.Map;
 
 import org.bukkit.configuration.file.FileConfiguration;
 
@@ -26,8 +27,12 @@ public class Config {
 	public static java.sql.Statement st;
 	public static ResultSet rs;
 		
+	//Bans
+	public static Map<String, String> BannedPlayers;
+	public static Map<String, String> MutedPlayers;
 	
-	public static void load(CNcmd master){
+	
+	public static void loadConfig(CNcmd master){
 		plugin = master;
 		//Reload the config first, just incase the server was reloaded
 		plugin.reloadConfig();
@@ -49,10 +54,26 @@ public class Config {
 		}catch(SQLException ex){
 			//Database connection failed :(
 			plugin.getLogger().log(null, "Database connection failed. Disabling plugin");
+			//Close the database connection
+			MySQLMethods.closeDatabase();
 			//Disable the plugin to prevent problemos
 			plugin.getServer().getPluginManager().disablePlugin(master);						
 		}		
 		//Config loaded. Job done
+	}
+	
+	public static void loadBannedPlayers(){
+		//Load all the players into a hashmap
+		plugin.getServer().getScheduler().runTaskAsynchronously(plugin, new Runnable(){
+			public void run() {
+				BannedPlayers = MySQLMethods.loadBannedPlayers();				
+			}			
+		});		
+	}
+	
+	public static void loadMutedPlayers(){
+		
+		
 	}
 
 }
