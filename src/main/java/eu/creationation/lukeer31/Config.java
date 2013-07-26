@@ -26,7 +26,14 @@ public class Config {
 	public static Connection db;
 	public static java.sql.Statement st;
 	public static ResultSet rs;
-		
+	
+	//Stored Player info
+	public static Map<Integer, String> StoredPlayers;
+	
+	//Homes
+	
+	//Warps
+	
 	//Bans
 	public static Map<String, String> BannedPlayers;
 	public static Map<String, String> MutedPlayers;
@@ -64,6 +71,7 @@ public class Config {
 	
 	public static void loadBannedPlayers(){
 		//Load all the players into a hashmap
+		//Run the task async so the queries to not lock up the entire server thread 
 		plugin.getServer().getScheduler().runTaskAsynchronously(plugin, new Runnable(){
 			public void run() {
 				BannedPlayers = MySQLMethods.loadBannedPlayers();				
@@ -72,8 +80,20 @@ public class Config {
 	}
 	
 	public static void loadMutedPlayers(){
-		
-		
+		//Load all the players into a hashmap
+		//Run the task async so the queries to not lock up the entire server thread 
+		plugin.getServer().getScheduler().runTaskAsynchronously(plugin, new Runnable(){
+			public void run() {
+				MutedPlayers = MySQLMethods.loadMutedPlayers();				
+			}			
+		});			
+	}
+	
+	
+	//Function to save me time getting the username from the ID
+	public static String getPlayerUsername(Integer player_id){
+		String username = StoredPlayers.get(player_id);		
+		return username;		
 	}
 
 }

@@ -106,8 +106,28 @@ public class MySQLMethods  {
 		
 	}
 	
-	//RE-DO THIS SO A COMPLETE LIST OF PLAYERS IS ADDED TO A HASHMAP SO THEN ALL THAT HAS TO BE DONE TO GET
-	//A USERNAME IS LOOK AT THE HASHMAP
+	//Gets all of the stored players in the database
+	public static Map<Integer, String> getStoredPlayers(){
+		//Get the statement
+		java.sql.Statement st = Config.st;
+		//Create the hashmap
+		Map<Integer, String> StoredPlayers = new HashMap<Integer, String>();
+		//Execute the query and get the results
+		try{
+			ResultSet rs = st.executeQuery("SELECT * FROM `cn_players`");
+			//Go through the results
+			while(rs.next()){
+				//File the players into the hashmap
+				StoredPlayers.put(rs.getInt("player_id"), rs.getString("player_username"));
+			}		
+		}catch(SQLException ex){
+			ex.printStackTrace();
+			return null;
+		}
+		//Return the hashmap
+		return StoredPlayers;		
+	}	
+	
 	public static Map<String, String> loadBannedPlayers(){
 		//Load all the banned players from the database and insert into a hashmap
 		//Get the DB
@@ -120,18 +140,8 @@ public class MySQLMethods  {
 			ResultSet result = st.executeQuery("SELECT * FROM `cn_bans` WHERE `ban_expired`=`0`");
 			//Loop through the resultset and add to the hasmap
 			while(result.next()){
-				//Assign to variables
-				String user_id = result.getString(1);
-				String ban_reason = result.getString(4);
-				//Get the players username
-				ResultSet usersearch = st.executeQuery("`SELECT `player_username` FROM `cn_players` where `player_id`=`" + user_id + "`");
-				//Declare the username string
-				String username = null;
-				while(usersearch.next()){
-					username = usersearch.getString(1);					
-				}
-				//Thats it, add the info to the hashmap
-				BannedPlayers.put(username, ban_reason);
+				//Push into the hashmap
+				BannedPlayers.put(Config.getPlayerUsername(result.getInt(1)), result.getString(4));
 			}			
 		}catch(SQLException ex){
 			//Print the stacktrace error
@@ -141,5 +151,29 @@ public class MySQLMethods  {
 		//Return the banned players map		
 		return BannedPlayers;		
 	}
-
+	
+	//Load all the muted players from the database
+	public static Map<String, String> loadMutedPlayers(){
+		//Load all the banned players from the database and insert into a hashmap
+		//Get the DB
+		java.sql.Statement st = Config.st;			
+		//Create the hashmap
+		Map<String, String> MutedPlayers = new HashMap<String, String>();
+		//Execute the database query
+		try{
+			//Run the query
+			ResultSet result = st.executeQuery("SELECT * FROM `cn_mutes` WHERE `mute_expired`=`0`");
+			//Loop through the resultset and add to the hasmap
+			while(result.next()){
+				//Push into the hashmap
+				MutedPlayers.put(Config.getPlayerUsername(result.getInt(1)), result.getString(4));
+			}			
+		}catch(SQLException ex){
+			//Print the stacktrace error
+			ex.printStackTrace();
+			return null;
+		}
+		//Return the banned players map		
+		return MutedPlayers;			
+	}
 }
