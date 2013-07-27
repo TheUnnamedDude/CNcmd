@@ -2,6 +2,9 @@ package eu.creationation.lukeer31;
 
 import org.bukkit.plugin.java.JavaPlugin;
 
+import eu.creationation.lukeer31.events.EventListener;
+import eu.creationation.lukeer31.mysql.MySQLMethods;
+
 public class CNcmd extends JavaPlugin {
 	
 	public static CNcmd plugin;
@@ -29,7 +32,7 @@ public class CNcmd extends JavaPlugin {
     	//Generate the database tables if they don't exist
     	getServer().getScheduler().runTaskAsynchronously(plugin, new Runnable(){
 			public void run() {
-				MySQLMethods.generateTables();
+				//MySQLMethods.generateTables();
 				//Other database stuff
 				
 			}

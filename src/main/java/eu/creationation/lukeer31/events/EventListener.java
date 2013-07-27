@@ -1,4 +1,4 @@
-package eu.creationation.lukeer31;
+package eu.creationation.lukeer31.events;
 
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;

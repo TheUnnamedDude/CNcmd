@@ -7,7 +7,10 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Map;
 
+import org.bukkit.Location;
 import org.bukkit.configuration.file.FileConfiguration;
+
+import eu.creationation.lukeer31.mysql.MySQLMethods;
 
 @SuppressWarnings("unused")
 public class Config {
@@ -31,9 +34,11 @@ public class Config {
 	public static Map<Integer, String> StoredPlayers;
 	
 	//Homes
-	
+	// Player_ID -> Map<HomeName, Location of home>
+	public static Map<Integer, Map<String, Location>> Homes;
 	//Warps
-	
+	// Warp id -> Location
+	public static Map<Integer, Location> Warps;	
 	//Bans
 	public static Map<String, String> BannedPlayers;
 	public static Map<String, String> MutedPlayers;
@@ -87,6 +92,11 @@ public class Config {
 				MutedPlayers = MySQLMethods.loadMutedPlayers();				
 			}			
 		});			
+	}
+	
+	public static void loadHomes(){
+		//Load all the homes for each player into a hashmap... inside a hashmap. Hashmapception
+		
 	}
 	
 	
