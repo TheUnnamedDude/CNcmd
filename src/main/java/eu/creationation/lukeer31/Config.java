@@ -9,6 +9,7 @@ import java.util.Map;
 
 import org.bukkit.Location;
 import org.bukkit.configuration.file.FileConfiguration;
+import org.bukkit.entity.Player;
 
 import eu.creationation.lukeer31.mysql.MySQLMethods;
 
@@ -27,6 +28,7 @@ public class Config {
 		
 		//General Messages	
 		public static String MessagePrefix;
+		public static String PlayerNotOnline;
 	
 		//Bans Stuff
 		public static String BanMessage;		
@@ -64,8 +66,13 @@ public class Config {
 		Pass = cfg.getString("Database.Pass");
 		User = cfg.getString("Database.User");
 		
-		MessagePrefix = cfg.getString("Messages.MessagePrefix");
-		//More too add as i need them
+		//Get all the messages we need from the config		
+		MessagePrefix = Config.replaceColorCodes(cfg.getString("Messages.MessagePrefix"));
+		
+		
+		
+		
+		
 		
 		//Connect to the database
 		try{
@@ -88,6 +95,46 @@ public class Config {
 	public static String getPlayerUsername(Integer player_id){
 		String username = StoredPlayers.get(player_id);		
 		return username;		
+	}
+	public static String replaceColorCodes(String in){
+		//Replace color codes inside the config
+		in.replace("&0", "§0");
+		in.replace("&1", "§1");
+		in.replace("&2", "§2");
+		in.replace("&3", "§3");
+		in.replace("&4", "§4");
+		in.replace("&5", "§5");
+		in.replace("&6", "§6");
+		in.replace("&7", "§7");
+		in.replace("&8", "§8");
+		in.replace("&9", "§9");
+		in.replace("&a", "§a");
+		in.replace("&b", "§b");
+		in.replace("&c", "§c");
+		in.replace("&d", "§d");
+		in.replace("&e", "§e");
+		in.replace("&f", "§f");
+		in.replace("&k", "§k");
+		in.replace("&l", "§l");
+		in.replace("&m", "§m");
+		in.replace("&n", "§n");
+		in.replace("&o", "§o");
+		in.replace("&r", "§r");
+		return in;
+	}
+	
+	//The command system will allow for multple players to be used in any command (That it is possible) by splitting the names with a ,
+	//Thus every command will send the playerlist to here to be processed, and this will return a list of the online players
+	public static Player[] getPlayerCSV(String players){
+		//Split the CSV
+		String[] playerlist = players.split(",");
+		int length = playerlist.length;
+		Player[] playerlistout = null;
+		
+		
+		
+		
+		return null;
 	}
 
 }
