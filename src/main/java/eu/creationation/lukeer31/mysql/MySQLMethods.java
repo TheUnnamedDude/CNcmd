@@ -8,6 +8,7 @@ import java.util.Map;
 import org.bukkit.Location;
 
 import eu.creationation.lukeer31.Config;
+import eu.creationation.lukeer31.GlobalMethods;
 
 public class MySQLMethods  {	
 	
@@ -67,7 +68,7 @@ public class MySQLMethods  {
 			//Loop through the resultset and add to the hasmap
 			while(result.next()){
 				//Push into the hashmap
-				BannedPlayers.put(Config.getPlayerUsername(result.getInt(1)), result.getString(4));
+				BannedPlayers.put(GlobalMethods.getPlayerUsername(result.getInt(1)), result.getString(4));
 			}			
 		}catch(SQLException ex){
 			//Print the stacktrace error
@@ -92,7 +93,7 @@ public class MySQLMethods  {
 			//Loop through the resultset and add to the hasmap
 			while(result.next()){
 				//Push into the hashmap
-				MutedPlayers.put(Config.getPlayerUsername(result.getInt(1)), result.getString(4));
+				MutedPlayers.put(GlobalMethods.getPlayerUsername(result.getInt(1)), result.getString(4));
 			}			
 		}catch(SQLException ex){
 			//Print the stacktrace error

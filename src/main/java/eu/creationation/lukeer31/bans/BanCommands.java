@@ -11,6 +11,7 @@ public class BanCommands implements CommandExecutor {
 		
 		//Kick command
 		if(command.getName().equalsIgnoreCase("kick")){
+			String players = args[1];
 			
 			
 		}		
