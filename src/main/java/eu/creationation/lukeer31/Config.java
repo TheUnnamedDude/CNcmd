@@ -18,12 +18,31 @@ public class Config {
 	//The main plugin
 	private static CNcmd plugin;
 	private static FileConfiguration cfg = null;
-	//All the config items
-	public static String host;
-	public static String pass;
-	public static String user;
 	
-	public static String messagePrefix;
+	//All the config items
+		//Database
+		public static String Host;
+		public static String Pass;
+		public static String User;
+		
+		//General Messages	
+		public static String MessagePrefix;
+	
+		//Bans Stuff
+		public static String BanMessage;		
+		public static String BanDisconnectMessage;
+		
+		public static String TempBanMessage;
+		public static String TempBanMessageDisconnect;
+		
+		public static String MuteMessage;
+		public static String MuteOnTalkMessage;
+		
+		public static String TempMuteMessage;
+		public static String TempMuteOnTalkMessage;
+		
+		
+	
 	
 	//Database
 	public static Connection db;
@@ -33,16 +52,6 @@ public class Config {
 	//Stored Player info
 	public static Map<Integer, String> StoredPlayers;
 	
-	//Homes
-	// Player_ID -> Map<HomeName, Location of home>
-	public static Map<Integer, Map<String, Location>> Homes;
-	//Warps
-	// Warp id -> Location
-	public static Map<Integer, Location> Warps;	
-	//Bans
-	public static Map<String, String> BannedPlayers;
-	public static Map<String, String> MutedPlayers;
-	
 	
 	public static void loadConfig(CNcmd master){
 		plugin = master;
@@ -51,17 +60,17 @@ public class Config {
 		//Get the config
 		cfg = plugin.getConfig();
 		//Get all of the configuration items and assign them to properties
-		host = cfg.getString("Database.Host");
-		pass = cfg.getString("Database.Pass");
-		user = cfg.getString("Database.User");
+		Host = cfg.getString("Database.Host");
+		Pass = cfg.getString("Database.Pass");
+		User = cfg.getString("Database.User");
 		
-		messagePrefix = cfg.getString("Messages.MessagePrefix");
+		MessagePrefix = cfg.getString("Messages.MessagePrefix");
 		//More too add as i need them
 		
 		//Connect to the database
 		try{
 			//Assign it to the public properties so the MySQL classes can get them
-			db = DriverManager.getConnection(host, user, pass);
+			db = DriverManager.getConnection(Host, User, Pass);
 			st = db.createStatement();			
 		}catch(SQLException ex){
 			//Database connection failed :(
@@ -72,33 +81,8 @@ public class Config {
 			plugin.getServer().getPluginManager().disablePlugin(master);						
 		}		
 		//Config loaded. Job done
-	}
-	
-	public static void loadBannedPlayers(){
-		//Load all the players into a hashmap
-		//Run the task async so the queries to not lock up the entire server thread 
-		plugin.getServer().getScheduler().runTaskAsynchronously(plugin, new Runnable(){
-			public void run() {
-				BannedPlayers = MySQLMethods.loadBannedPlayers();				
-			}			
-		});		
-	}
-	
-	public static void loadMutedPlayers(){
-		//Load all the players into a hashmap
-		//Run the task async so the queries to not lock up the entire server thread 
-		plugin.getServer().getScheduler().runTaskAsynchronously(plugin, new Runnable(){
-			public void run() {
-				MutedPlayers = MySQLMethods.loadMutedPlayers();				
-			}			
-		});			
-	}
-	
-	public static void loadHomes(){
-		//Load all the homes for each player into a hashmap... inside a hashmap. Hashmapception
-		
-	}
-	
+	}	
+
 	
 	//Function to save me time getting the username from the ID
 	public static String getPlayerUsername(Integer player_id){

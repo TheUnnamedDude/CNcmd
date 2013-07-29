@@ -2,7 +2,6 @@ package eu.creationation.lukeer31;
 
 import org.bukkit.plugin.java.JavaPlugin;
 
-import eu.creationation.lukeer31.events.EventListener;
 import eu.creationation.lukeer31.mysql.MySQLMethods;
 
 public class CNcmd extends JavaPlugin {
@@ -39,10 +38,7 @@ public class CNcmd extends JavaPlugin {
     		
     	});
     	
-    	//Register the listeners
-    	//Event listener
-    	getServer().getPluginManager().registerEvents(new EventListener(), this);
-    	//Command Listener
+
     	
     }
 }
