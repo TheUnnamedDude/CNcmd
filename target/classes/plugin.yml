@@ -1,7 +1,8 @@
-name: CNCmd
-version: 1.0.0
-description: The complete command system for Creation Nation
 author: Lukeer31
-authors:
-
-main eu.creationation.lukeer31.CNcmd
+database: false
+generator: http://dinnerbone.com/minecraft/tools/pluginator/
+main: eu.creationation.lukeer31.CNcmd
+name: CNcmd
+startup: postworld
+url: http://www.CreatioNation.eu/
+version: '1.0'
