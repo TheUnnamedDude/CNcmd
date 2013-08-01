@@ -96,4 +96,22 @@ public class GlobalMethods {
 		//Return the arraylist to the command executor
 		return playerlistout;
 	}
+	
+	//Method to get a player from a username, so i can easily edit this when mojang breaks
+	//everything when username changes are allowed
+	public static Player processPlayer(String username, boolean onlineonly){
+		Player player = plugin.getServer().getPlayer(username);
+		if(onlineonly == true){
+			if(player == null){
+				return null;
+			}
+			return player;
+		}
+		if(player == null){
+			player = (Player) plugin.getServer().getOfflinePlayer(username);				
+		}
+		return player;
+	}
+		
 }
+
