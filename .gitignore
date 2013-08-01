@@ -27,6 +27,8 @@ local.properties
 
 # PDT-specific
 .buildpath
+#The target folder
+target/
 
 
 #################
