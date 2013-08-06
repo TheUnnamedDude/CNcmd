@@ -17,28 +17,28 @@ public class GlobalMethods {
 
 	public static String replaceColorCodes(String in) {
 		// Replace color codes inside the config
-		in.replace("&0", "§0");
-		in.replace("&1", "§1");
-		in.replace("&2", "§2");
-		in.replace("&3", "§3");
-		in.replace("&4", "§4");
-		in.replace("&5", "§5");
-		in.replace("&6", "§6");
-		in.replace("&7", "§7");
-		in.replace("&8", "§8");
-		in.replace("&9", "§9");
-		in.replace("&a", "§a");
-		in.replace("&b", "§b");
-		in.replace("&c", "§c");
-		in.replace("&d", "§d");
-		in.replace("&e", "§e");
-		in.replace("&f", "§f");
-		in.replace("&k", "§k");
-		in.replace("&l", "§l");
-		in.replace("&m", "§m");
-		in.replace("&n", "§n");
-		in.replace("&o", "§o");
-		in.replace("&r", "§r");
+		in.replace("&0", "$0");
+		in.replace("&1", "$1");
+		in.replace("&2", "$2");
+		in.replace("&3", "$3");
+		in.replace("&4", "$4");
+		in.replace("&5", "$5");
+		in.replace("&6", "$6");
+		in.replace("&7", "$7");
+		in.replace("&8", "$8");
+		in.replace("&9", "$9");
+		in.replace("&a", "$a");
+		in.replace("&b", "$b");
+		in.replace("&c", "$c");
+		in.replace("&d", "$d");
+		in.replace("&e", "$e");
+		in.replace("&f", "$f");
+		in.replace("&k", "$k");
+		in.replace("&l", "$l");
+		in.replace("&m", "$m");
+		in.replace("&n", "$n");
+		in.replace("&o", "$o");
+		in.replace("&r", "$r");
 		return in;
 	}
 
