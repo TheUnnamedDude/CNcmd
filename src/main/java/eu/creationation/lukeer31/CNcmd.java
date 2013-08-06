@@ -8,11 +8,33 @@ public class CNcmd extends JavaPlugin {
 
 	public static CNcmd plugin;
 
+    String[] train = {
+            "                      (+++++++++++)",
+            "                  (++++)",
+            "               (+++)",
+            "             (+++)",
+            "            (++)",
+            "            [~]",
+            "            | | (~)  (~)  (~)    /~~~~~~~~~~~~",
+            "         /~~~~~~~~~~~~~~~~~~~~~~~  [~_~_] |",
+            "       [|  %___________________           |",
+            "         \\[___] ___   ___   ___\\  No. 4   |",
+            "      /// [___+/-+-\\-/-+-\\-/-+ \\\\_________|=",
+            "    //// @-=-@ \\___/ \\___/ \\___/  @-==-@    ",
+            " ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~",
+    };
+
 	public CNcmd() {
 		plugin = this;
 	}
 
 	public void onDisable() {
+        // Print train
+
+        for (String str : train) {
+            getLogger().info(str);
+        }
+
 		// Log the message
 		getLogger().log(null, "Disabling CNCmd");
 		// Database
